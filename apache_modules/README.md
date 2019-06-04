@@ -1,1 +1,1 @@
-//This directory contains Apache modules
+** This directory contains Apache modules **
