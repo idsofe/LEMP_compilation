@@ -16,8 +16,8 @@ wget https://www-us.apache.org/dist//apr/apr-1.7.0.tar.gz
 tar -xzf apr-1.7.0.tar.gz
 cd /opt/apr-1.7.0
 ./configure --prefix=/usr/local/apr
-make
-make install
+make -j$(nproc)
+make install -j$(nproc)
 
 
 cd /opt
@@ -25,8 +25,8 @@ wget https://www-us.apache.org/dist//apr/apr-util-1.6.1.tar.gz
 tar -xzf apr-util-1.6.1.tar.gz
 cd apr-util-1.6.1
 ./configure --with-apr=/usr/local/apr
-make
-make install
+make -j$(nproc)
+make install -j$(nproc)
 
 
 
@@ -74,6 +74,9 @@ cd /opt/httpd-2.4.39
  
 make -j$(nproc)
 make install -j$(nproc)
+
+cp /opt/LEMP_compilation/apache_modules/* /usr/libexec/
+
 
 
 
