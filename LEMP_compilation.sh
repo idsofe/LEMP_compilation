@@ -111,11 +111,18 @@ cd /usr/local/mysql
 mkdir mysql-files
 chown mysql:mysql mysql-files
 chmod 750 mysql-files
-bin/mysqld --initialize --user=mysql > /root/temp_pw_mysql
+bin/mysqld --initialize --user=mysql 
 
-bin/mysql_ssl_rsa_setup              
+bin/mysql_ssl_rsa_setup
+
+mkdir /var/log/mysqld
+touch /var/log/mysqld/mysqld.log
+chown -R mysql. /var/log/mysqld/
+#mkdir /var/lib/mysql
+
+
 bin/mysqld_safe --user=mysql &
-# Next command is optional
+
 cp support-files/mysql.server /etc/init.d/mysqld
 chmod +x /etc/init.d/mysqld
 
@@ -123,7 +130,9 @@ ln -s /usr/local/mysql/bin/* /usr/sbin/
 
 chkconfig --add mysqld
 
-mv /etc/my.cnf /etc/my.cnf.origin
+service mysqld stop
+
+#mv /etc/my.cnf /etc/my.cnf.origin
 
 cp /opt/LEMP_compilation/my.cnf /etc/
 
@@ -134,7 +143,14 @@ systemctl start mysqld
 ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
 
 
-#ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
+#Reset mysql root password :
+
+#systemctl stop mysqld
+#mysqld_safe --skip-grant-tables &
+#mysql -uroot
+#use mysql;
+#update user set authentication_string=PASSWORD("mynewpassword") where User='root';
+#flush privileges;
 
 
 
