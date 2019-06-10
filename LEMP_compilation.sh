@@ -117,6 +117,12 @@ ln -s /usr/local/mysql/bin/* /usr/sbin/
 
 chkconfig --add mysqld
 
+mv /etc/my.cnf /etc/my.cnf.origin
+
+cp /opt/LEMP_compilation/my.cnf /etc/
+
+mkdir /etc/my.cnf.d
+
 systemctl start mysqld
 
 ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
