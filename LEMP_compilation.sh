@@ -67,12 +67,18 @@ cd /opt/httpd-2.4.39
 --enable-logio \
 --enable-ssl=shared \
 --with-ssl=/usr \
---enable-proxy=shared \
+--enable-proxy=shared
  
 make -j$(nproc)
 make install -j$(nproc)
 
 cp /opt/LEMP_compilation/apache_modules/* /usr/libexec/
+
+mv /etc/httpd/httpd.conf /etc/httpd/httpd.conf.origin
+
+cp /opt/LEMP_compilation/httpd.conf /etc/httpd/
+
+cp /opt/LEMP_compilation/httpd.service /usr/lib/systemd/system/
 
 systemctl start httpd
 
