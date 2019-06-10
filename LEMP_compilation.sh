@@ -143,7 +143,7 @@ systemctl start mysqld
 ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
 
 
-#Reset mysql root password :
+##Reset mysql root password :
 
 #systemctl stop mysqld
 #mysqld_safe --skip-grant-tables &
@@ -151,6 +151,9 @@ ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
 #use mysql;
 #update user set authentication_string=PASSWORD("mynewpassword") where User='root';
 #flush privileges;
+
+
+
 
 
 
