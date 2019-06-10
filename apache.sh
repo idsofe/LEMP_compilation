@@ -30,9 +30,6 @@ make install -j$(nproc)
 
 
 
-
-
-
 ###Installing Apache
 
 cd /opt
@@ -76,6 +73,8 @@ make -j$(nproc)
 make install -j$(nproc)
 
 cp /opt/LEMP_compilation/apache_modules/* /usr/libexec/
+
+systemctl start httpd
 
 
 
